@@ -1,5 +1,7 @@
 package com.hc.hclvzh.msg.image;
 
+import com.hc.hclvzh.api_baidu.AuthService;
+
 public class BaiduFaceApiProcess {
 
 	public String getFaceResult(String imageUrl) {

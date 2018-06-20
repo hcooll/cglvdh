@@ -10,7 +10,6 @@ import java.util.concurrent.atomic.AtomicLong;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.logging.log4j.Logger;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.ui.Model;
@@ -57,7 +56,7 @@ public class GreetingController {
 		request.setCharacterEncoding("UTF-8");// POST提交有效
 		response.setContentType("text/html;charset=UTF-8");
 
-		boolean isGet = request.getMethod().toLowerCase().equals("get");
+		// boolean isGet = request.getMethod().toLowerCase().equals("get");
 
 		PrintWriter print = null;
 		String result = "";
@@ -114,66 +113,6 @@ public class GreetingController {
 				print.close();
 			}
 		}
-		
-//		system.out  
-//        System.out.println("参数调试！输出自System.out.println！");  
-//        System.out.println("参数调试！输出自System.out.println！");  
-//        System.out.println("参数调试！输出自System.out.println！");  
-//          
-//        //log.info  
-//        Logger.info("调试参数！！！输出自log.info！！！");  
-//        log.info("调试参数！！！输出自log.info！！！");  
-//        log.info("调试参数！！！输出自log.info！！！");  
-//          
-//        //log.error  
-//        log.error("调试参数！！！输出自log.error！！！");  
-//        log.error("调试参数！！！输出自log.error！！！");  
-//        log.error("调试参数！！！输出自log.error！！！");  
-//          
-//        //log.warn  
-//        log.warn("调试参数！！！输出自log.warn！！！");  
-//        log.warn("调试参数！！！输出自log.warn！！！");  
-//        log.warn("调试参数！！！输出自log.warn！！！");  
-//          
-//        //log.debug  
-//        log.debug("姓名：" + report_name + "，输出自log.debug！！！");  
-//        log.debug("昵称：" + column1 + "，输出自log.debug！！！");  
-//        log.debug("邮箱：" + column2 + "，输出自log.debug！！！");  
-//        log.debug("联系方式：" + column3 + "，输出自log.debug！！！");  
-//        
-		// }
-	}
-	//
-	// private String access_token_url =
-	// "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=APPID&secret=APPSECRET";
-	//
-	// /**
-	// * 获取access_token
-	// *
-	// * @param appid
-	// * 凭证
-	// * @param appsecret
-	// * 密钥
-	// * @return
-	// */
-	// public AccessToken getAccessToken(String appid, String appsecret) {
-	// AccessToken accessToken = null;
-	// String requestUrl = access_token_url.replace("APPID",
-	// appid).replace("APPSECRET", appsecret);
-	// JSONObject jsonObject = httpRequest(requestUrl, "GET", null);
-	// if (null != jsonObject) {
-	// try {
-	// accessToken = new AccessToken();
-	// accessToken.setAccess_token(jsonObject.getString("access_token"));
-	// accessToken.setExpires_in(jsonObject.getInt("expires_in"));
-	// } catch (JSONException e) {
-	// accessToken = null;
-	// // 获取token失败
-	// log.error("获取token失败 errcode:{} errmsg:{}", jsonObject.getInt("errcode"),
-	// jsonObject.getString("errmsg"));
-	// }
-	// }
-	// return accessToken;
-	// }
 
+	}
 }

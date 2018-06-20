@@ -1,4 +1,4 @@
-package com.hc.hclvzh.msg.image;
+package com.hc.hclvzh.utils;
 
 /**
  * Base64 工具类

@@ -1,4 +1,4 @@
-package com.hc.hclvzh.msg.image;
+package com.hc.hclvzh.utils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

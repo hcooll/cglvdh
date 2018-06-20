@@ -1,4 +1,4 @@
-package com.hc.hclvzh.msg.image;
+package com.hc.hclvzh.utils;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;

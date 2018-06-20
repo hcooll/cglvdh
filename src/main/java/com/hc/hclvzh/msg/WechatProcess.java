@@ -1,7 +1,10 @@
 package com.hc.hclvzh.msg;
 
+import com.hc.hclvzh.api_weixin.AuthService;
+import com.hc.hclvzh.api_weixin.MediaService;
 import com.hc.hclvzh.msg.image.BaiduFaceApiProcess;
 import com.hc.hclvzh.msg.text.TulingApiProcess;
+import com.hc.hclvzh.msg.voice.BaiduVoiceApiProcess;
 
 /**
  * 微信xml消息处理流程逻辑类
@@ -29,6 +32,13 @@ public class WechatProcess {
 			result = new TulingApiProcess().getTulingResult(xmlEntity.getContent());
 		} else if ("image".endsWith(xmlEntity.getMsgType())) {
 			result = new BaiduFaceApiProcess().getFaceResult(xmlEntity.getPicUrl());
+		} else if ("voice".endsWith(xmlEntity.getMsgType())) {
+			String weixinToken = new AuthService().getToken();
+			String voiceData = new MediaService().getMedia(weixinToken, xmlEntity.getMediaId());
+
+			System.out.println("voiceData:" + voiceData);
+
+			result = new BaiduVoiceApiProcess().getVoiceResult(voiceData);
 		}
 
 		if (result == null || result.length() <= 0) {
@@ -41,10 +51,9 @@ public class WechatProcess {
 		 * 此时，如果用户输入的是“你好”，在经过上面的过程之后，result为“你也好”类似的内容
 		 * 因为最终回复给微信的也是xml格式的数据，所有需要将其封装为文本类型返回消息
 		 */
-		
-		System.out.println("FromUserName:" + xmlEntity.getFromUserName() + ", ToUserName：" +  xmlEntity.getToUserName());
 
-		
+		System.out.println("FromUserName:" + xmlEntity.getFromUserName() + ", ToUserName：" + xmlEntity.getToUserName());
+
 		result = new FormatXmlProcess().formatXmlAnswer(xmlEntity.getFromUserName(), xmlEntity.getToUserName(), result);
 
 		return result;
