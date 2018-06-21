@@ -1,13 +1,13 @@
 package com.hc.hclvzh.msg.image;
 
-import com.hc.hclvzh.api_baidu.AuthService;
+import com.hc.hclvzh.api_baidu.FaceAuthService;
 
 public class BaiduFaceApiProcess {
 
 	public String getFaceResult(String imageUrl) {
 
 		try {
-			String token = AuthService.getAuth();
+			String token = FaceAuthService.getAuth();
 
 			ImageEntity imageEntity = new FaceDetect().detect(imageUrl, token);
 
@@ -28,6 +28,6 @@ public class BaiduFaceApiProcess {
 			// TODO: handle exception
 		}
 
-		return "圖像識別失敗";
+		return "图像识别失败";
 	}
 }

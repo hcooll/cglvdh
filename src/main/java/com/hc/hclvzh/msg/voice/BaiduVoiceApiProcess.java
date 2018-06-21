@@ -1,33 +1,33 @@
 package com.hc.hclvzh.msg.voice;
 
-import com.hc.hclvzh.api_baidu.AuthService;
+import com.hc.hclvzh.api_baidu.VoiceAuthService;
 
 public class BaiduVoiceApiProcess {
 
-	public String getVoiceResult(String voiceData) {
+    public String getVoiceResult(byte[] voiceData) {
 
-		try {
-			String token = AuthService.getAuth();
+        try {
+            String token = VoiceAuthService.getAuth();
 
-			VoiceEntity voiceEntity = new VoiceDetect().detect(voiceData, token);
+            VoiceEntity voiceEntity = new VoiceDetect().detect_2(voiceData, token);
 
-			if (voiceEntity != null) {
+            if (voiceEntity != null) {
 
-				String result = "";
+                String result = "";
 
-				for (int i = 0; i < voiceEntity.results.size(); i++) {
+                for (int i = 0; i < voiceEntity.results.size(); i++) {
 
-					result += voiceEntity.results.get(0) + "\r\n";
+                    result += voiceEntity.results.get(0) + "\r\n";
 
-				}
+                }
 
-				return result;
-			}
+                return result;
+            }
 
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
 
-		return "语音识别失败";
-	}
+        return "语音识别失败";
+    }
 }

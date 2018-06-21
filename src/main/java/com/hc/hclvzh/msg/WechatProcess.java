@@ -35,8 +35,8 @@ public class WechatProcess {
 		} else if ("voice".endsWith(xmlEntity.getMsgType())) {
 			String weixinToken = new AuthService().getToken();
 			System.out.println("weixinToken:" + weixinToken + ", mediaId:" + xmlEntity.getMediaId());
-			String voiceData = new MediaService().getMedia(weixinToken, xmlEntity.getMediaId());
-			System.out.println("voiceData:" + voiceData);
+			byte[] voiceData = new MediaService().getMedia(weixinToken, xmlEntity.getMediaId());
+			System.out.println("voiceData:" + voiceData.toString());
 			result = new BaiduVoiceApiProcess().getVoiceResult(voiceData);
 		}
 
