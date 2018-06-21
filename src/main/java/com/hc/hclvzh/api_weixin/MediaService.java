@@ -11,7 +11,7 @@ public class MediaService {
 
 	public String getMedia(String token, String mediaId) {
 		// 获取token地址
-		String authHost = "https://file.api.weixin.qq.com/cgi-bin/media/get?";
+		String authHost = "http://file.api.weixin.qq.com/cgi-bin/media/get?";
 		String getAccessTokenUrl = authHost
 				// 1. grant_type为固定参数
 				+ "access_token=" + token
@@ -44,7 +44,7 @@ public class MediaService {
 			System.err.println("result:" + result);
 			return result;
 		} catch (Exception e) {
-			System.err.printf("获取token失败！");
+			System.err.println("获取Media资源失败！");
 			e.printStackTrace(System.err);
 		}
 		return null;
