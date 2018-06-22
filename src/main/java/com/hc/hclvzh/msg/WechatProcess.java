@@ -38,6 +38,9 @@ public class WechatProcess {
 			byte[] voiceData = new MediaService().getMedia(weixinToken, xmlEntity.getMediaId());
 			System.out.println("voiceData:" + voiceData.toString());
 			result = new BaiduVoiceApiProcess().getVoiceResult(voiceData);
+
+			// 识别后智能恢复
+			result = new TulingApiProcess().getTulingResult(result);
 		}
 
 		if (result == null || result.length() <= 0) {
