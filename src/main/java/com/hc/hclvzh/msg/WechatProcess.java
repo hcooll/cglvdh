@@ -39,7 +39,7 @@ public class WechatProcess {
 			System.out.println("voiceData:" + voiceData.toString());
 			result = new BaiduVoiceApiProcess().getVoiceResult(voiceData);
 
-			// 识别后智能恢复
+			// 识别后智能回复
 			result = new TulingApiProcess().getTulingResult(result);
 		}
 

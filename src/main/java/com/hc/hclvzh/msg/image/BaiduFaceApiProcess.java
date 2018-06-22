@@ -4,30 +4,38 @@ import com.hc.hclvzh.api_baidu.FaceAuthService;
 
 public class BaiduFaceApiProcess {
 
-	public String getFaceResult(String imageUrl) {
+    public String getFaceResult(String imageUrl) {
 
-		try {
-			String token = FaceAuthService.getAuth();
+        try {
+            String token = FaceAuthService.getAuth();
 
-			ImageEntity imageEntity = new FaceDetect().detect(imageUrl, token);
+            ImageEntity imageEntity = new FaceDetect().detect(imageUrl, token);
 
-			if (imageEntity != null) {
+            if (imageEntity != null) {
 
-				String result = "";
+                StringBuilder result = new StringBuilder();
 
-				for (int i = 0; i < imageEntity.resultEntity.faceNum; i++) {
+                for (int i = 0; i < imageEntity.resultEntity.faceNum; i++) {
 
-					result += imageEntity.resultEntity.faceListEntities.get(0).age + "嵗 \r\n";
+                    ImageFaceListEntity listEntity = imageEntity.resultEntity.faceListEntities.get(0);
 
-				}
+                    result.append(listEntity.age)
+                            .append("岁, ")
+                            .append(listEntity.gender.type)
+                            .append(", 颜值：")
+                            .append(listEntity.beauty)
+                            .append(", 表情：")
+                            .append(listEntity.expression.type);
 
-				return result;
-			}
+                }
 
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+                return result.toString();
+            }
 
-		return "图像识别失败";
-	}
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+
+        return "图像识别失败";
+    }
 }

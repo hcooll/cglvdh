@@ -1,8 +1,6 @@
 package com.hc.hclvzh.utils;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
@@ -74,4 +72,40 @@ public class HttpUtil {
         System.err.println("result:" + result);
         return result;
     }
+
+
+
+    public static byte[] downloadFile(String fileUrl) {
+        try {
+            URL realUrl = new URL(fileUrl);
+            // 打开和URL之间的连接
+            HttpURLConnection connection = (HttpURLConnection) realUrl.openConnection();
+            connection.setRequestMethod("GET");
+            connection.connect();
+            // 获取所有响应头字段
+            Map<String, List<String>> map = connection.getHeaderFields();
+            // 遍历所有的响应头字段
+            for (String key : map.keySet()) {
+                System.err.println(key + "--->" + map.get(key));
+            }
+            // 定义 BufferedReader输入流来读取URL的响应
+            InputStream inStream = connection.getInputStream();
+
+            ByteArrayOutputStream outSteam = new ByteArrayOutputStream();
+            byte[] buffer = new byte[1024];
+            int len = -1;
+            while ((len = inStream.read(buffer)) != -1) {
+                outSteam.write(buffer, 0, len);
+            }
+            outSteam.close();
+            inStream.close();
+            return outSteam.toByteArray();
+
+        } catch (Exception e) {
+            System.err.println("获取资源失败！");
+            e.printStackTrace(System.err);
+        }
+        return null;
+    }
+
 }

@@ -11,4 +11,14 @@ public class ImageFaceListEntity {
 
 	@SerializedName("age")
 	public int age;
+
+	@SerializedName("beauty")
+	public double beauty;
+
+	@SerializedName("gender")
+	public GenderEntity gender;
+
+	@SerializedName("expression")
+	public ExpressionEntity expression;
+
 }
